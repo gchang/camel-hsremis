@@ -28,6 +28,14 @@ Install the package:
       1. download the package from: 
 	https://bin.ssec.wisc.edu/pub/ICI/MEASURES_V003/hsremis_clim/MEASURES_CAMEL_CLIMAT_hsremis_lib_snowCorr_V003.tar.gz
 	2. unzip and tar it. 
+	3. a git copy of this package has no data folder (384 MB). The test reads only
+	   data/CAMEL_coef_climatology_01Month_V003.nc (196 MB). Copy it from the data folder of
+	   https://lpdaac.usgs.gov/documents/2234/FORTRAN_Source_Code.tar.gz (the same package at LP DAAC),
+	   or download the LP DAAC granule (Earthdata login) and save it under that name:
+	   https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/CAM5K30CFCLIM.003/CAM5K30CFCLIM_coef_climatology_01Month_V003/CAM5K30CFCLIM_coef_climatology_01Month_V003.nc
+	   Other months are the CAM5K30CFCLIM granules for 02 to 12; the library looks for
+	   CAMEL_coef_climatology_<MM>Month_V003.nc in camel_dir, so rename or link them to that name.
+	   The emissivity and uncertainty files are the CAM5K30EMCLIM and CAM5K30UCCLIM granules.
 
 
 Software package contains: 
