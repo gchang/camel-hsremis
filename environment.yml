@@ -1,0 +1,27 @@
+# Conda environment for building the CAMEL HSR emissivity library and its
+# test program with conda-forge's gfortran and netCDF-Fortran instead of the
+# "module load gcc hdf hdf5 netcdf4" setup on the SSEC computers.
+#
+#   conda env create -f environment.yml
+#   conda activate camel-hsremis
+#
+# The makefiles read the netCDF folders from the SSEC_NETCDF4_INC and
+# SSEC_NETCDF4_LIB make variables. Set both to this environment on the make
+# line instead of editing the makefiles:
+#
+#   cd src_hsrlib_clim
+#   make -f Makefile_lib SSEC_NETCDF4_INC=$CONDA_PREFIX/include SSEC_NETCDF4_LIB=$CONDA_PREFIX/lib
+#   make -f Makefile_lib install
+#   cd ../test
+#   make SSEC_NETCDF4_INC=$CONDA_PREFIX/include SSEC_NETCDF4_LIB=$CONDA_PREFIX/lib LINK_FLAGS=-Wl,-rpath,$CONDA_PREFIX/lib
+#
+# LINK_FLAGS adds the run-time library path, so run_hsriremis.exe finds
+# libnetcdff without setting LD_LIBRARY_PATH.
+# Tested with gfortran 16.2.0, netcdf-fortran 4.6.4 and make 4.4.1 (Linux x86_64).
+name: camel-hsremis
+channels:
+  - conda-forge
+dependencies:
+  - gfortran
+  - netcdf-fortran
+  - make

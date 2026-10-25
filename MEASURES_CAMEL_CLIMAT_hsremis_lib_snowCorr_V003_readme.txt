@@ -41,6 +41,7 @@ Software package contains:
  
 
 Software requirement: netcdf4 library (gcc)  -  "module load gcc hdf hdf5 netcdf4" on the SSEC computers
+                      or with conda: "conda env create -f environment.yml"; that file shows the make lines to use
                              
 Create the HSR emis library:     
 
