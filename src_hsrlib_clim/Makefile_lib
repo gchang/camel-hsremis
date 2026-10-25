@@ -1,0 +1,66 @@
+#------------------------------------------------
+# FORTRAN Makefile  
+# for the MEASURES Combined ASTER - MODIS Emissivity over Land (CAMEL) EDR  
+# 
+# Created by  Eva Borbas UW-Madison SSEC/WISC (Nov 2014)
+#
+#  Version history: 
+#             Nov  2014   Support version: V0.1
+#             Jan  2017   Support version: V1.0
+#             Oct  2018   Support version: V2.0
+#             Mar  2024   Support version: V3.0
+#------------------------------------------------
+
+INC = -I$(SSEC_NETCDF4_INC)
+LIB = -L$(SSEC_NETCDF4_LIB) -lnetcdff 
+
+LIB_FN=libhsriremis_clim_V003.a
+INC_FN=hsriremis_clim_EDR.inc
+TARGET = $(LIB_FN)
+     
+# Object file names
+
+OBJS = \
+init_hsriremis.o \
+read_labpcs.o \
+read_CAMEL_clim_coef_masked.o \
+recon_hsriremis.o \
+select_wavenum.o  \
+compute_clim_hsriremis.o 
+
+
+# Compiler names
+
+F90 = gfortran
+
+F90FLAGS = -O2 -mcmodel=large -ffixed-line-length-none -frecord-marker=4 
+#F90FLAGS = -g -mcmodel=large -ffixed-line-length-none -frecord-marker=4 
+ 
+ 
+#LINK_FLAGS = -Bstatic
+#LINK_FLAGS = -static
+
+#----------------------------------------
+# No edits are necessary after this point
+#----------------------------------------
+
+# Rules
+
+$(TARGET):        $(OBJS)
+       
+	ar rv $(LIB_FN) *.o
+
+clean:
+	/bin/rm -f *.o $(LIB_FN)
+	
+install:
+	mv -f  $(LIB_FN) ../lib/
+	cp -f  $(INC_FN) ../include/
+
+.SUFFIXES: .o .c .f
+
+.f.o:
+	$(F90) -c $(F90FLAGS) $(ADD_F90FLAGS) $(LIB) $(INC) $<
+
+.c.o:
+	$(CC) -c $(CFLAGS) $(ADD_CFLAGS) $<
