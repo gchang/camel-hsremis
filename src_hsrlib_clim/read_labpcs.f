@@ -41,7 +41,8 @@
        REAL*8 ::  pcm1(numwave), pcu1(numwave,numwave)
        REAL*4 :: pcm(numwave),pcu(numwave,numwave)
 
-       character*200 fn
+       Character (len=*) :: path_lab
+       character*4096 fn
        Character (len=1024) :: strbuf ! string buffer for var 
        Character(len=3) :: clabvs
 

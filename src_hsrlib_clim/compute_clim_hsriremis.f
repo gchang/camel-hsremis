@@ -75,6 +75,8 @@ c --------------------------------------------------------------------
       
       include 'hsriremis_clim_EDR.inc'
 
+       Character (len=*) :: path_camel, path_lab
+
        Integer, Parameter :: nmonth=12
        Integer year, month
        integer nchs

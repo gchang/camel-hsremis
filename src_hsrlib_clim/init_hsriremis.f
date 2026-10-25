@@ -12,6 +12,8 @@
     !
 	 Implicit none
          include 'hsriremis_clim_EDR.inc'
+
+         Character (len=*) :: path_lab
 	 
 	 integer i, numchs
          	 

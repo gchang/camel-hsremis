@@ -48,8 +48,10 @@
        
        REAL*8  :: snow_emis_init(numwave)
        
-       Character (len=300) ::  path_camel, path_lab
-       Character (len=300) :: fn_coef
+       ! path_camel and path_lab are declared character(len=*) in the routines
+       ! that take them, so a caller's path of any length is passed in whole.
+       ! 4096 is the longest path Linux allows (PATH_MAX).
+       Character (len=4096) :: fn_coef
  
        Logical coef_opt
        parameter(coef_opt=.true.)

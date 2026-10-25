@@ -31,7 +31,7 @@
  
        Character (len=4) :: cyear
        Character (len=2) :: cmonth
-       Character (len=400) :: camel_dir, lab_dir
+       Character (len=4096) :: camel_dir, lab_dir
        Character (len=10) :: site_name
        Character (len=70) :: site_fn1, site_fn2
 
