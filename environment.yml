@@ -25,3 +25,4 @@ dependencies:
   - gfortran
   - netcdf-fortran
   - make
+  - binutils    # Makefile_lib calls a bare ar, which conda-forge gfortran does not provide
