@@ -31,6 +31,10 @@ Results do not change for paths that already worked.
 
 The makefiles take the netCDF folders from `SSEC_NETCDF4_INC` and `SSEC_NETCDF4_LIB`, which `module load gcc hdf hdf5 netcdf4` sets on the SSEC computers. `environment.yml` lists gfortran, netcdf-fortran and make from conda-forge; its comments give the make lines with both variables set to `$CONDA_PREFIX` (plus `LINK_FLAGS=-Wl,-rpath,$CONDA_PREFIX/lib` for the test program), so neither makefile needs editing. One readme line points to it.
 
+## 2026-10-27: binutils in `environment.yml`
+
+`Makefile_lib` calls `ar` by its bare name. conda-forge's gfortran brings only the prefixed tools (`x86_64-conda-linux-gnu-ar`), so in a clean environment with no system `ar` the library was never made and the test program's link failed. `environment.yml` now lists binutils, which provides `ar`. The makefiles are unchanged.
+
 ## Known issues, not changed
 
 These either change results or are how the package is meant to be used, so they are left as they are. Line numbers are in this copy; the first three are two lines lower than in the tarball.
